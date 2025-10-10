@@ -1,6 +1,6 @@
 body {
   background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Noto Sans Bengali', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,15 +44,17 @@ button:hover {
   font-size: 22px;
   color: #e91e63;
   min-height: 50px;
+  font-family: 'Noto Sans Bengali', 'Poppins', sans-serif;
+  display: none; /* hide initially */
 }
 
-/* Audio controls */
 .audio-controls {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
+  display: none; /* hide initially */
 }
 
 .audio-controls button {
@@ -77,6 +79,7 @@ button:hover {
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
+  display: none; /* hide initially */
 }
 
 .note-card {
