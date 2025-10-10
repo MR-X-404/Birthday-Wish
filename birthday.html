@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>শুভ জন্মদিন</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #0b0c1a, #1a1a2e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+
+#stars, #hearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.message-container {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 25px;
+  background: rgba(0,0,0,0.5);
+  box-shadow: 0 0 60px rgba(255,255,255,0.2);
+  animation: fadeIn 3s ease-in-out forwards;
+  opacity: 0;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4.5em;
+  color: #ffd700;
+  margin-bottom: 20px;
+  text-shadow: 0 0 25px #ffd700;
+}
+
+p {
+  font-size: 1.5em;
+  line-height: 1.8;
+}
+
+#secret {
+  margin-top: 25px;
+  cursor: pointer;
+  color: #ff69b4;
+  font-weight: bold;
+  font-size: 1.3em;
+  display: none;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.confetti {
+  position: absolute;
+  border-radius: 50%;
+  top: -20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+.heart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: red;
+  transform: rotate(45deg);
+  animation: floatUp linear infinite;
+}
+
+.heart::before, .heart::after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before { top: -7.5px; left: 0; }
+.heart::after { left: 7.5px; top: 0; }
+
+@keyframes floatUp {
+  to { transform: translateY(-120vh) rotate(360deg); opacity:0; }
+}
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="hearts"></div>
+
+<div class="message-container">
+  <h1>শুভ জন্মদিন!</h1>
+  <p>আজকের দিন শুধু তোমার।  
+  দূরে থেকেও কেউ চুপচাপ ভাবছে তোমার জন্য।  
+  হাসো, ভালো থাকো, আর মনে রাখো —  
+  কেউ আছে, যিনি আজীবন তোমার জন্য ভালোবাসা অনুভব করছেন।</p>
+
+  <p id="secret">🎁 Click for a secret note 🎁</p>
+</div>
+
+<audio id="bgMusic" src="birthday-music.mp3" loop autoplay></audio>
+
+<script>
+  // Twinkling stars
+  const stars = document.getElementById('stars');
+  for(let i=0;i<300;i++){
+    let star = document.createElement('div');
+    star.style.position = 'absolute';
+    star.style.width = star.style.height = Math.random()*2 + 'px';
+    star.style.background = 'white';
+    star.style.borderRadius = '50%';
+    star.style.top = Math.random()*100 + 'vh';
+    star.style.left = Math.random()*100 + 'vw';
+    star.style.opacity = Math.random();
+    star.style.animation = `twinkle ${2+Math.random()*3}s infinite alternate`;
+    stars.appendChild(star);
+  }
+
+  const style = document.createElement('style');
+  style.innerHTML = `@keyframes twinkle { to { opacity: 0.1; } }`;
+  document.head.appendChild(style);
+
+  // Confetti
+  for(let i=0;i<120;i++){
+    let conf = document.createElement('div');
+    conf.className = 'confetti';
+    conf.style.left = Math.random()*100+'vw';
+    conf.style.width = conf.style.height = (5+Math.random()*12)+'px';
+    conf.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 80%)`;
+    conf.style.animationDuration = (3+Math.random()*4)+'s';
+    document.body.appendChild(conf);
+  }
+
+  // Floating hearts
+  const heartsContainer = document.getElementById('hearts');
+  for(let i=0;i<30;i++){
+    let heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random()*100+'vw';
+    heart.style.animationDuration = (5+Math.random()*5)+'s';
+    heartsContainer.appendChild(heart);
+  }
+
+  // Show secret message on click
+  const secret = document.getElementById('secret');
+  secret.addEventListener('click', () => {
+    secret.innerHTML = "🌟 তুমি সত্যিই আমার জীবনের সবচেয়ে স্পেশাল মানুষ। এই দিনটি চিরস্মরণীয়। 🌟";
+    secret.style.color = '#ffd700';
+  });
+
+  // Fade in message
+  document.querySelector('.message-container').style.opacity = 1;
+
+  // Delay until birthday
+  const birthday = new Date("2025-10-10"); // Change to actual birthday
+  const now = new Date();
+  if(now < birthday){
+    document.querySelector('.message-container').innerHTML = "<h1>তুমি এখনই এটি দেখতে পারবে না।</h1>";
+  } else {
+    document.getElementById('secret').style.display = 'block';
+  }
+</script>
+</body>
+</html>
