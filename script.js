@@ -13,7 +13,7 @@ const voice2 = document.getElementById('voice2');
 const voice3 = document.getElementById('voice3');
 
 // Timer set to 10-10-2025 11:30 PM
-const targetDate = new Date("2025-10-10T23:45:00");
+const targetDate = new Date("2025-10-10T23:50:00");
 
 // Hide everything initially
 surpriseDiv.style.display = "none";
