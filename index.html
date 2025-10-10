@@ -13,12 +13,32 @@
     <button id="surpriseBtn" disabled>Click for Surprise 💌</button>
     <div id="surprise" class="hidden"></div>
     <p id="timer"></p>
+
+    <!-- Voice Notes buttons hidden until timer ends -->
+    <div class="audio-controls" id="voiceButtons" style="display:none;">
+      <button id="playVoice2">Voice Notes for You 1 🎤</button>
+      <button id="playVoice3">Voice Notes for You 2 🎤</button>
+    </div>
+
+    <!-- Notes hidden until timer ends -->
+    <div class="notes" id="notesDiv" style="display:none;">
+      <div class="note-card">
+        <p class="note-text">
+          পৃথিবীতে বহু সম্পর্ক আছে যেখানে ভালোবাসা নাই, আবার পৃথিবীতে বহু ভালোবাসা আছে যেখানে সম্পর্ক নাই।
+        </p>
+      </div>
+      <div class="note-card">
+        <p class="note-text">
+          Some love stories are written in silence
+        </p>
+      </div>
+    </div>
   </div>
 
   <canvas id="confetti"></canvas>
   <canvas id="stars"></canvas>
 
-  <!-- Multiple audio -->
+  <!-- Audio files -->
   <audio id="voice1" src="voice1.m4a"></audio>
   <audio id="voice2" src="voice2.m4a"></audio>
   <audio id="voice3" src="voice3.m4a"></audio>
