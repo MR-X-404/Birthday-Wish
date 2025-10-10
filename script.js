@@ -1,25 +1,25 @@
 const messages = [
-  "🌸 তোমার হাসিটাই আমার প্রিয় গান... 🌸",
-  "💖 তুমি আমার জীবনের সবচেয়ে সুন্দর অংশ 💖",
-  "🎁 আশা করি এই জন্মদিনে তুমি অনেক খুশি থাকবে 🎁",
-  "✨ আনন্দে ভরে উঠুক তোমার প্রতিটি দিন ✨"
+  "🌸 তোমার হাসিটাই আমার প্রিয় গান... 🌸"
 ];
 
 const button = document.getElementById('surpriseBtn');
 const surpriseDiv = document.getElementById('surprise');
 const timerEl = document.getElementById('timer');
+const voiceButtons = document.getElementById('voiceButtons');
+const notesDiv = document.getElementById('notesDiv');
 
-// Multiple audio
-const audioFiles = [
-  document.getElementById('voice1'),
-  document.getElementById('voice2'),
-  document.getElementById('voice3')
-];
+const voice1 = document.getElementById('voice1');
+const voice2 = document.getElementById('voice2');
+const voice3 = document.getElementById('voice3');
 
-// Target date (DD-MM-YYYY HH:MM)
-const targetDate = new Date("2025-10-11T00:00:00"); // 11-10-2025
+const targetDate = new Date("2025-10-11T00:00:00");
 
-// Enable button when target date reached
+// Check localStorage flag
+if(localStorage.getItem('birthdayUnlocked') === 'true'){
+  enableSurprise();
+}
+
+// Timer
 function checkTimer() {
   const now = new Date();
   const diff = targetDate - now;
@@ -33,32 +33,35 @@ function checkTimer() {
     timerEl.innerText = `শুধু ${days} দিন ${hours} ঘণ্টা ${minutes} মিনিট ${seconds} সেকেন্ড পর সারপ্রাইজ খুলবে ⏳`;
     button.disabled = true;
   } else {
-    timerEl.innerText = "🎉 আজকের দিন! সারপ্রাইজ উপভোগ করো! 🎉";
-    button.disabled = false;
+    localStorage.setItem('birthdayUnlocked', 'true');
+    enableSurprise();
   }
 
   setTimeout(checkTimer, 1000);
 }
 checkTimer();
 
-// Play multiple audio in sequence
-function playMultipleAudio(index = 0) {
-  if(index >= audioFiles.length) return; // সব অডিও শেষ
-  const audio = audioFiles[index];
-  audio.play();
-  audio.onended = () => playMultipleAudio(index + 1);
+function enableSurprise() {
+  timerEl.innerText = "🎉 আজকের দিন! সারপ্রাইজ উপভোগ করো! 🎉";
+  button.disabled = false;
+  voiceButtons.style.display = "flex";
+  notesDiv.style.display = "flex";
 }
 
-// Button click event
+// Surprise click
 button.addEventListener('click', () => {
   surpriseDiv.innerHTML = "";
   showMessageSequence(messages);
-  playMultipleAudio();
+  voice1.play();
   startConfetti();
   startStars();
 });
 
-// --- Message Typing ---
+// Voice Notes buttons
+document.getElementById('playVoice2').addEventListener('click', () => voice2.play());
+document.getElementById('playVoice3').addEventListener('click', () => voice3.play());
+
+// Message typing
 function showMessageSequence(msgArray) {
   let i = 0;
   function showNext() {
@@ -82,7 +85,7 @@ function typeMessage(msg, index, callback) {
   }
 }
 
-// --- Confetti Effect ---
+// Confetti
 function startConfetti() {
   const canvas = document.getElementById('confetti');
   const ctx = canvas.getContext('2d');
@@ -129,13 +132,12 @@ function startConfetti() {
         };
       }
     });
-
     requestAnimationFrame(draw);
   }
   draw();
 }
 
-// --- Stars Effect ---
+// Stars
 function startStars() {
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
