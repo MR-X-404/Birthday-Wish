@@ -4,7 +4,6 @@ const messages = [
 
 const button = document.getElementById('surpriseBtn');
 const surpriseDiv = document.getElementById('surprise');
-const timerEl = document.getElementById('timer');
 const voiceButtons = document.getElementById('voiceButtons');
 const notesDiv = document.getElementById('notesDiv');
 
@@ -12,61 +11,13 @@ const voice1 = document.getElementById('voice1');
 const voice2 = document.getElementById('voice2');
 const voice3 = document.getElementById('voice3');
 
-// Timer set to 10-10-2025 11:30 PM
-const targetDate = new Date("2025-10-10T23:50:00");
-
-// Hide everything initially
+// Hide elements initially
 surpriseDiv.style.display = "none";
 notesDiv.style.display = "none";
 voiceButtons.style.display = "none";
 
-// Check localStorage
-if(localStorage.getItem('birthdayUnlocked') === 'true') {
-  enableSurprise();
-  if(localStorage.getItem('surpriseClicked') === 'true') {
-    showSurpriseContent();
-  }
-}
-
-// Timer
-function checkTimer() {
-  const now = new Date();
-  const diff = targetDate - now;
-
-  if(diff > 0) {
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff / (1000*60*60)) % 24);
-    const minutes = Math.floor((diff / (1000*60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    timerEl.innerText = `শুধু ${days} দিন ${hours} ঘণ্টা ${minutes} মিনিট ${seconds} সেকেন্ড পর সারপ্রাইজ খুলবে ⏳`;
-    button.disabled = true;
-  } else {
-    localStorage.setItem('birthdayUnlocked', 'true');
-    enableSurprise();
-  }
-
-  setTimeout(checkTimer, 1000);
-}
-checkTimer();
-
-function enableSurprise() {
-  timerEl.innerText = "🎉 সারপ্রাইজ উপভোগ করো! 🎉";
-  button.disabled = false;
-
-  if(localStorage.getItem('surpriseClicked') === 'true') {
-    showSurpriseContent();
-  }
-}
-
+// Click for Surprise
 button.addEventListener('click', () => {
-  if(localStorage.getItem('surpriseClicked') !== 'true') {
-    localStorage.setItem('surpriseClicked', 'true');
-    showSurpriseContent();
-  }
-});
-
-function showSurpriseContent() {
   surpriseDiv.style.display = "block";
   notesDiv.style.display = "flex";
   voiceButtons.style.display = "flex";
@@ -76,7 +27,7 @@ function showSurpriseContent() {
   voice1.play();
   startConfetti();
   startStars();
-}
+});
 
 document.getElementById('playVoice2').addEventListener('click', () => voice2.play());
 document.getElementById('playVoice3').addEventListener('click', () => voice3.play());
