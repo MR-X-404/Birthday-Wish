@@ -8,23 +8,20 @@
 </head>
 <body>
   <div class="container">
-    <h1>🎉 Happy Birthday, My Special One 🎉</h1>
-    <p class="message">
-      তোমাকে নিয়ে লিখে ফেলতে পারি পুরো একটা জীবন...
-      কিন্তু আজ শুধু এইটুকুই বলবো — তুমি আমার জীবনের সবচেয়ে সুন্দর অংশ 💫
-    </p>
-    <button onclick="showSurprise()">Click for Surprise 💌</button>
-    <div id="surprise" class="hidden">
-      <p>🌸 তোমার হাসিটাই আমার প্রিয় গান... 🌸</p>
-    </div>
+    <h1 id="title">🎉 Happy Birthday, My Special One 🎉</h1>
+    <p class="message" id="message">আজকের জন্য অপেক্ষা করো...</p>
+    <button id="surpriseBtn" disabled>Click for Surprise 💌</button>
+    <div id="surprise" class="hidden"></div>
+    <p id="timer"></p>
   </div>
 
   <canvas id="confetti"></canvas>
+  <canvas id="stars"></canvas>
 
-  <audio id="voice">
-    <source src="voice.m4a" type="audio/mp4">
-    আপনার ব্রাউজার অডিও সমর্থন করে না।
-  </audio>
+  <!-- Multiple audio -->
+  <audio id="voice1" src="voice1.m4a"></audio>
+  <audio id="voice2" src="voice2.m4a"></audio>
+  <audio id="voice3" src="voice3.m4a"></audio>
 
   <script src="script.js"></script>
 </body>
