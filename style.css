@@ -71,16 +71,6 @@ button:hover {
   transform: scale(1.1);
 }
 
-.audio-controls button.playing {
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1.05); }
-  50% { transform: scale(1); }
-}
-
-/* Notes */
 .notes {
   margin-top: 20px;
   display: flex;
@@ -99,14 +89,12 @@ button:hover {
   font-size: 15px;
   opacity: 0;
   animation: fadeIn 0.8s forwards;
-  animation-delay: 0.5s;
 }
 
 @keyframes fadeIn {
   to { opacity: 1; }
 }
 
-/* Canvas */
 #confetti, #stars {
   position: fixed;
   top: 0;
