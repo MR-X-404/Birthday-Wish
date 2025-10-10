@@ -12,8 +12,13 @@ const voice1 = document.getElementById('voice1');
 const voice2 = document.getElementById('voice2');
 const voice3 = document.getElementById('voice3');
 
-// Timer set to 10-10-2025 11:22 PM
-const targetDate = new Date("2025-10-10T23:25:00");
+// Timer set to 10-10-2025 11:30 PM
+const targetDate = new Date("2025-10-10T23:40:00");
+
+// Hide everything initially
+surpriseDiv.style.display = "none";
+notesDiv.style.display = "none";
+voiceButtons.style.display = "none";
 
 // Check localStorage flags
 if(localStorage.getItem('birthdayUnlocked') === 'true') {
@@ -46,8 +51,12 @@ function checkTimer() {
 checkTimer();
 
 function enableSurprise() {
-  timerEl.innerText = "🎉 আজকের দিন! সারপ্রাইজ উপভোগ করো! 🎉";
+  timerEl.innerText = "🎉 সারপ্রাইজ উপভোগ করো! 🎉";
   button.disabled = false;
+
+  if(localStorage.getItem('surpriseClicked') === 'true') {
+    showSurpriseContent();
+  }
 }
 
 // Surprise button click
@@ -59,7 +68,7 @@ button.addEventListener('click', () => {
 });
 
 function showSurpriseContent() {
-  surpriseDiv.classList.remove('hidden'); // Show message
+  surpriseDiv.style.display = "block";
   surpriseDiv.innerHTML = "";
   showMessageSequence(messages);
 
