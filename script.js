@@ -12,7 +12,8 @@ const voice1 = document.getElementById('voice1');
 const voice2 = document.getElementById('voice2');
 const voice3 = document.getElementById('voice3');
 
-const targetDate = new Date("2025-10-10T22:41:00");
+// Timer now set to 10-10-2025 10:50 PM
+const targetDate = new Date("2025-10-10T22:50:00");
 
 // Check localStorage flag
 if(localStorage.getItem('birthdayUnlocked') === 'true'){
