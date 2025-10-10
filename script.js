@@ -12,12 +12,15 @@ const voice1 = document.getElementById('voice1');
 const voice2 = document.getElementById('voice2');
 const voice3 = document.getElementById('voice3');
 
-// Timer set to 10-10-2025 11:05 PM
-const targetDate = new Date("2025-10-10T23:05:00");
+// Timer set to 10-10-2025 11:15 PM
+const targetDate = new Date("2025-10-10T23:15:00");
 
-// Check localStorage flag
-if(localStorage.getItem('birthdayUnlocked') === 'true'){
+// Check localStorage flags
+if(localStorage.getItem('birthdayUnlocked') === 'true') {
   enableSurprise();
+  if(localStorage.getItem('surpriseClicked') === 'true') {
+    showSurpriseContent();
+  }
 }
 
 // Timer
@@ -43,14 +46,19 @@ function checkTimer() {
 checkTimer();
 
 function enableSurprise() {
-  timerEl.innerText = "🎉 আজকের দিন! সারপ্রাইজ উপভোগ করো! 🎉";
+  timerEl.innerText = "🎉 সারপ্রাইজ উপভোগ করো! 🎉";
   button.disabled = false;
-  notesDiv.style.display = "none";
-  voiceButtons.style.display = "none";
 }
 
 // Surprise button click
 button.addEventListener('click', () => {
+  if(localStorage.getItem('surpriseClicked') !== 'true') {
+    localStorage.setItem('surpriseClicked', 'true');
+    showSurpriseContent();
+  }
+});
+
+function showSurpriseContent() {
   surpriseDiv.innerHTML = "";
   showMessageSequence(messages);
 
@@ -61,7 +69,7 @@ button.addEventListener('click', () => {
 
   startConfetti();
   startStars();
-});
+}
 
 // Voice Notes buttons
 document.getElementById('playVoice2').addEventListener('click', () => voice2.play());
