@@ -18,15 +18,30 @@ voiceButtons.style.display = "none";
 
 // Click for Surprise
 button.addEventListener('click', () => {
+  // Show containers
   surpriseDiv.style.display = "block";
   notesDiv.style.display = "flex";
   voiceButtons.style.display = "flex";
+
+  // Reset message
   surpriseDiv.innerHTML = "";
+
+  // Show Bangla message
   showMessageSequence(messages);
 
+  // Play first voice
   voice1.play();
+
+  // Start animations
   startConfetti();
   startStars();
+
+  // Animate notes
+  const noteCards = document.querySelectorAll('.note-card');
+  noteCards.forEach((card, i) => {
+    card.style.opacity = 0;
+    card.style.animation = `fadeIn 0.8s forwards ${i*0.3}s`;
+  });
 });
 
 document.getElementById('playVoice2').addEventListener('click', () => voice2.play());
