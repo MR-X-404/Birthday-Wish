@@ -45,7 +45,7 @@ button:hover {
   color: #e91e63;
   min-height: 50px;
   font-family: 'Noto Sans Bengali', 'Poppins', sans-serif;
-  display: none; /* hide initially */
+  display: none;
 }
 
 .audio-controls {
@@ -54,7 +54,7 @@ button:hover {
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
-  display: none; /* hide initially */
+  display: none;
 }
 
 .audio-controls button {
@@ -79,7 +79,7 @@ button:hover {
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
-  display: none; /* hide initially */
+  display: none;
 }
 
 .note-card {
