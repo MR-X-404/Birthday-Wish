@@ -12,39 +12,39 @@ body {
 
 .container {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.25);
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  max-width: 500px;
 }
 
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 25px;
   border: none;
   background-color: #ff4081;
   color: white;
-  font-size: 16px;
-  border-radius: 8px;
+  font-size: 18px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 button:hover {
   background-color: #ff79a7;
-  transform: scale(1.05);
+  transform: scale(1.1) rotate(-2deg);
 }
 
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
 
 #surprise {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 20px;
   color: #e91e63;
+  min-height: 50px;
 }
 
 @keyframes fadeIn {
@@ -52,17 +52,14 @@ button:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in {
-  animation: fadeIn 1s ease forwards;
-}
+.fade-in { animation: fadeIn 1s ease forwards; }
 
-/* Confetti canvas */
-#confetti {
+#confetti, #stars {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
