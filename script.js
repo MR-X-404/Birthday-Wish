@@ -13,14 +13,14 @@ const voice2 = document.getElementById('voice2');
 const voice3 = document.getElementById('voice3');
 
 // Timer set to 10-10-2025 11:30 PM
-const targetDate = new Date("2025-10-10T23:40:00");
+const targetDate = new Date("2025-10-10T23:45:00");
 
 // Hide everything initially
 surpriseDiv.style.display = "none";
 notesDiv.style.display = "none";
 voiceButtons.style.display = "none";
 
-// Check localStorage flags
+// Check localStorage
 if(localStorage.getItem('birthdayUnlocked') === 'true') {
   enableSurprise();
   if(localStorage.getItem('surpriseClicked') === 'true') {
@@ -34,9 +34,9 @@ function checkTimer() {
   const diff = targetDate - now;
 
   if(diff > 0) {
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
     timerEl.innerText = `শুধু ${days} দিন ${hours} ঘণ্টা ${minutes} মিনিট ${seconds} সেকেন্ড পর সারপ্রাইজ খুলবে ⏳`;
@@ -59,7 +59,6 @@ function enableSurprise() {
   }
 }
 
-// Surprise button click
 button.addEventListener('click', () => {
   if(localStorage.getItem('surpriseClicked') !== 'true') {
     localStorage.setItem('surpriseClicked', 'true');
@@ -69,23 +68,19 @@ button.addEventListener('click', () => {
 
 function showSurpriseContent() {
   surpriseDiv.style.display = "block";
+  notesDiv.style.display = "flex";
+  voiceButtons.style.display = "flex";
   surpriseDiv.innerHTML = "";
   showMessageSequence(messages);
 
   voice1.play();
-
-  notesDiv.style.display = "flex";
-  voiceButtons.style.display = "flex";
-
   startConfetti();
   startStars();
 }
 
-// Voice Notes buttons
 document.getElementById('playVoice2').addEventListener('click', () => voice2.play());
 document.getElementById('playVoice3').addEventListener('click', () => voice3.play());
 
-// Message typing
 function showMessageSequence(msgArray) {
   let i = 0;
   function showNext() {
@@ -109,7 +104,6 @@ function typeMessage(msg, index, callback) {
   }
 }
 
-// Confetti
 function startConfetti() {
   const canvas = document.getElementById('confetti');
   const ctx = canvas.getContext('2d');
@@ -161,7 +155,6 @@ function startConfetti() {
   draw();
 }
 
-// Stars
 function startStars() {
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
@@ -195,7 +188,6 @@ function startStars() {
   drawStars();
 }
 
-// Handle canvas resize
 window.addEventListener('resize', () => {
   const confCanvas = document.getElementById('confetti');
   confCanvas.width = window.innerWidth;
