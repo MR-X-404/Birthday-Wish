@@ -12,13 +12,13 @@ body {
 
 .container {
   text-align: center;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   padding: 35px;
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.25);
   position: relative;
   z-index: 2;
-  max-width: 500px;
+  max-width: 550px;
 }
 
 button {
@@ -39,11 +39,9 @@ button:hover {
   box-shadow: 0 0 15px rgba(255,64,129,0.6);
 }
 
-.hidden { display: none; }
-
 #surprise {
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 22px;
   color: #e91e63;
   min-height: 50px;
 }
@@ -87,7 +85,7 @@ button:hover {
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   flex-wrap: wrap;
 }
 
@@ -97,7 +95,8 @@ button:hover {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   text-align: center;
-  max-width: 250px;
+  max-width: 260px;
+  font-size: 15px;
   opacity: 0;
   animation: fadeIn 0.8s forwards;
   animation-delay: 0.5s;
@@ -105,11 +104,6 @@ button:hover {
 
 @keyframes fadeIn {
   to { opacity: 1; }
-}
-
-.note-text {
-  font-size: 14px;
-  color: #333;
 }
 
 /* Canvas */
