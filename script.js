@@ -12,8 +12,8 @@ const voice1 = document.getElementById('voice1');
 const voice2 = document.getElementById('voice2');
 const voice3 = document.getElementById('voice3');
 
-// Timer now set to 10-10-2025 10:50 PM
-const targetDate = new Date("2025-10-10T22:50:00");
+// Timer set to 10-10-2025 11:05 PM
+const targetDate = new Date("2025-10-10T23:05:00");
 
 // Check localStorage flag
 if(localStorage.getItem('birthdayUnlocked') === 'true'){
@@ -45,15 +45,20 @@ checkTimer();
 function enableSurprise() {
   timerEl.innerText = "🎉 আজকের দিন! সারপ্রাইজ উপভোগ করো! 🎉";
   button.disabled = false;
-  voiceButtons.style.display = "flex";
-  notesDiv.style.display = "flex";
+  notesDiv.style.display = "none";
+  voiceButtons.style.display = "none";
 }
 
-// Surprise click
+// Surprise button click
 button.addEventListener('click', () => {
   surpriseDiv.innerHTML = "";
   showMessageSequence(messages);
+
   voice1.play();
+
+  notesDiv.style.display = "flex";
+  voiceButtons.style.display = "flex";
+
   startConfetti();
   startStars();
 });
@@ -156,19 +161,29 @@ function startStars() {
     });
   }
 
-  function drawStars(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    stars.forEach(star=>{
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
       ctx.beginPath();
-      ctx.arc(star.x, star.y, star.r, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255,255,255,${star.alpha})`;
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${s.alpha})`;
       ctx.fill();
-
-      star.alpha += (Math.random()*0.02-0.01);
-      if(star.alpha < 0) star.alpha = 0;
-      if(star.alpha > 1) star.alpha = 1;
+      s.alpha += (Math.random()*0.02-0.01);
+      if(s.alpha < 0) s.alpha = 0;
+      if(s.alpha > 1) s.alpha = 1;
     });
     requestAnimationFrame(drawStars);
   }
   drawStars();
 }
+
+// Handle canvas resize
+window.addEventListener('resize', () => {
+  const confCanvas = document.getElementById('confetti');
+  confCanvas.width = window.innerWidth;
+  confCanvas.height = window.innerHeight;
+
+  const starCanvas = document.getElementById('stars');
+  starCanvas.width = window.innerWidth;
+  starCanvas.height = window.innerHeight;
+});
